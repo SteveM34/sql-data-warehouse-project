@@ -1,8 +1,18 @@
 
 # Data Warehouse and Analytics Project
 
-Welcome to the **Data Warehouse and Analytics Project** repository! 🚀  
-This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights. Designed as a portfolio project, it highlights industry best practices in data engineering and analytics.
+This project demonstrates a complete **end-to-end data warehouse pipeline** using the **Medallion Architecture** (Bronze → Silver → Gold) in **SQL Server**. It simulates a real-world retail environment by ingesting data from ERP and CRM sources, applying transformations, and modeling it into a star schema for reporting and analytics.
+
+---
+
+## 🧰 Tech Stack
+- **Database**: SQL Server
+- **Language**: T-SQL
+- **Data Source**: CSV files (ERP and CRM systems)
+- **Architecture**: Medallion (Bronze, Silver, Gold)
+- **Modeling**: Star Schema (Fact & Dimension Views)
+
+---
 
 ---
 ## 🏗️ Data Architecture
@@ -10,9 +20,22 @@ This project demonstrates a comprehensive data warehousing and analytics solutio
 The data architecture for this project follows Medallion Architecture **Bronze**, **Silver**, and **Gold** layers:
 ![Data Architecture](docs/data_architecture.png)
 
-1. **Bronze Layer**: Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
-2. **Silver Layer**: This layer includes data cleansing, standardization, and normalization processes to prepare data for analysis.
-3. **Gold Layer**: Houses business-ready data modeled into a star schema required for reporting and analytics.
+### 🔹 Bronze Layer
+- Raw data ingestion using `BULK INSERT`
+- Source files from CRM and ERP (e.g., customer info, sales, product details)
+- Stored procedure: `bronze.load_bronze`
+
+### 🔸 Silver Layer
+- Data cleansing, transformation, and normalization
+- Examples: fixing date formats, deduplication, mapping codes to descriptions
+- Stored procedure: `silver.load_silver`
+
+### 🟡 Gold Layer
+- Analytical-ready layer using **views**
+- Modeled as **Star Schema**:
+  - `dim_customers`, `dim_products` (Dimension Views)
+  - `fact_sales` (Fact View)
+
 
 ---
 ## 📖 Project Overview
@@ -24,28 +47,33 @@ This project involves:
 3. **Data Modeling**: Developing fact and dimension tables optimized for analytical queries.
 4. **Analytics & Reporting**: Creating SQL-based reports and dashboards for actionable insights.
 
-🎯 This repository is an excellent resource for professionals and students looking to showcase expertise in:
-- SQL Development
-- Data Architect
-- Data Engineering  
-- ETL Pipeline Developer  
-- Data Modeling  
-- Data Analytics  
+---
+
+## 🧪 Exploratory Data Analysis (EDA)
+
+Performed EDA using SQL queries on the Gold Layer to derive business insights:
+- **Database Exploration**: Table and schema overview  
+- **Dimension Analysis**: Unique values, country distributions, categories  
+- **Date Range Analysis**: First/last order date, customer age range  
+- **Key Metrics**: Total sales, average price, number of orders  
+- **Magnitude Analysis**: Grouped totals by category, gender, and region  
+- **Ranking Analysis**: Top products, high-value customers, worst performers
 
 ---
 
-## 🛠️ Important Links & Tools:
-
-Everything is for Free!
-- **[Datasets](datasets/):** Access to the project dataset (csv files).
-- **[SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads):** Lightweight server for hosting your SQL database.
-- **[SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16):** GUI for managing and interacting with databases.
-- **[Git Repository](https://github.com/):** Set up a GitHub account and repository to manage, version, and collaborate on your code efficiently.
-- **[DrawIO](https://www.drawio.com/):** Design data architecture, models, flows, and diagrams.
-- **[Notion](https://www.notion.com/):** All-in-one tool for project management and organization.
-- **[Notion Project Steps](https://thankful-pangolin-2ca.notion.site/SQL-Data-Warehouse-Project-16ed041640ef80489667cfe2f380b269?pvs=4):** Access to All Project Phases and Tasks.
+## 📊 Sample Business Questions Answered
+- Who are the top 5 customers by revenue?
+- What are the 5 best-selling and worst-performing products?
+- What is the average product cost by category?
+- Which countries have the most customers or sales?
 
 ---
+
+## 🚀 Highlights
+- Created a robust, reusable ETL pipeline with proper error handling (`TRY-CATCH`)
+- Demonstrated schema design, transformation logic, and optimization
+- Built a foundation for integration with BI tools like Power BI or Tableau
+
 
 ## 🚀 Project Requirements
 
@@ -53,6 +81,8 @@ Everything is for Free!
 
 #### Objective
 Develop a modern data warehouse using SQL Server to consolidate sales data, enabling analytical reporting and informed decision-making.
+
+---
 
 #### Specifications
 - **Data Sources**: Import data from two source systems (ERP and CRM) provided as CSV files.
@@ -97,26 +127,31 @@ data-warehouse-project/
 ├── tests/                              # Test scripts and quality files
 │
 ├── README.md                           # Project overview and instructions
-├── LICENSE                             # License information for the repository
 ├── .gitignore                          # Files and directories to be ignored by Git
 └── requirements.txt                    # Dependencies and requirements for the project
 ```
 ---
 
 
-## 🛡️ License
+---
 
-This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
+## 🧠 Learning Outcomes
+- Gained hands-on experience with **data warehousing architecture**
+- Practiced real-world **ETL pipeline design** and **data modeling**
+- Strengthened SQL skills with **advanced queries and optimization**
 
-## 🌟 About Me
+---
 
-Hi there! I'm **Baraa Khatib Salkini**, also known as **Data With Baraa**. I’m an IT professional and passionate YouTuber on a mission to share knowledge and make working with data enjoyable and engaging!
+## 📌 Status
+✅ Completed — Ready to be showcased to recruiters and hiring managers  
+📅 Timeline: May 2025  
+💡 Ideal for: SQL Developer, Data Analyst, Junior Data Engineer roles
 
-Let's stay in touch! Feel free to connect with me on the following platforms:
+---
 
-[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white)](http://bit.ly/3GiCVUE)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/baraa-khatib-salkini)
-[![Website](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.datawithbaraa.com)
-[![Newsletter](https://img.shields.io/badge/Newsletter-FF5722?style=for-the-badge&logo=substack&logoColor=white)](https://bit.ly/BaraaNewsletter)
-[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/baraasalkini)
-[![Join](https://img.shields.io/badge/Join-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@datawithbaraa)
+## 🔗 Contact
+**Steve Monteiro**  
+📧 [monteiro.steve7@gmail.com]  
+🌐 [LinkedIn](https://www.linkedin.com/in/steve-monteiro-02360a226/) | 
+[GitHub](https://github.com/SteveM34)
+
